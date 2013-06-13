@@ -8,13 +8,13 @@
 	<body>
 
 		<div class="postit_container">
-			<div class="postit flipped" id="postit">
+			<div class="postit" id="postit">
 				<div class="front yellow helvetica">
 					<div contenteditable="true" autofocus></div>
 					<span id="info">i</span>
 				</div>
 				<div class="back">
-					<p>Cor do Papel</p>
+					<p>Cor do Papel:</p>
 					<div class="paper">
 						<a href="#" class="yellow active">Amarelo</a>
 						<a href="#" class="blue">Azul</a>
@@ -28,7 +28,7 @@
 						<a href="#" class="purple">Roxo</a>
 					</div>
 
-					<p>Fonte</p>
+					<p>Fonte:</p>
 					<select name="fonts" id="fonts" class="fonts">
 						<option value="helvetica">Helvetica</option>
 						<option value="comic_sans">Comic Sans</option>
@@ -43,7 +43,7 @@
 
 					<br>
 
-					<a href="#" class="ok">OK</a>
+					<a href="#" class="ok" id="ok">OK</a>
 				</div>
 			</div>
 		</div>
@@ -67,12 +67,11 @@
 					return this;
 				},
 				hasClass: function(cls) {
-					return this.e.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
+					return new RegExp('(\\s|^)'+cls+'(\\s|$)').test(this.e.className);
 				},
 				removeClass: function(cls) {
-					if (hasClass(ele,cls)) {
-						var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
-						this.e.className= this.e.className.replace(reg,' ');
+					if (this.hasClass(cls)) {
+						this.e.className=this.e.className.replace(new RegExp('(\\s|^)'+cls+'(\\s|$)'),' ').replace(/^\s+|\s+$/g, '');
 					}
 					return this;
 				},
@@ -83,6 +82,12 @@
 
 			$('#info').on('click', function() {
 				$('#postit').addClass('flipped');
+			});
+
+			$('#ok').on('click', function(e) {
+				$('#postit').removeClass('flipped');
+
+				e.preventDefault();
 			});
 		</script>
 

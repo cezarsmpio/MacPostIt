@@ -57,14 +57,14 @@ br { clear: both; }
 }
 .postit_container {
 	margin: 200px auto;
-	-webkit-perspective: 600px;
+	-webkit-perspective: 500px;
 }
 .postit {
 	-webkit-transform-style: preserve-3d;
 	-webkit-transition: all 1s;
 }
 .postit.flipped {
-	-webkit-transform: rotateY(180deg);
+	-webkit-transform: rotateY(-180deg);
 }
 .postit .front, .postit .back {
 	position: absolute;
@@ -130,7 +130,6 @@ br { clear: both; }
 	height: 24px;
 	float: left;
 	text-indent: -9999px;
-	-webkit-transform: rotateX(180deg);
 	box-shadow: 0 2px 5px #505054;
 	margin: 0 12px 8px 0;
 }
