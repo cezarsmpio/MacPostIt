@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS3 - Postit</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+	<body>
+
+		<div class="postit_container">
+			<div class="postit flipped" id="postit">
+				<div class="front yellow helvetica">
+					<div contenteditable="true" autofocus></div>
+					<span id="info">i</span>
+				</div>
+				<div class="back">
+					<p>Cor do Papel</p>
+					<div class="paper">
+						<a href="#" class="yellow active">Amarelo</a>
+						<a href="#" class="blue">Azul</a>
+						<a href="#" class="red">Vermelho</a>
+						<a href="#" class="green">Verde</a>
+						<a href="#" class="purple">Roxo</a>
+						<a href="#" class="yellow">Amarelo</a>
+						<a href="#" class="blue">Azul</a>
+						<a href="#" class="red">Vermelho</a>
+						<a href="#" class="green">Verde</a>
+						<a href="#" class="purple">Roxo</a>
+					</div>
+
+					<p>Fonte</p>
+					<select name="fonts" id="fonts" class="fonts">
+						<option value="helvetica">Helvetica</option>
+						<option value="comic_sans">Comic Sans</option>
+						<option value="arial">Arial</option>
+					</select>
+
+					<select name="font_size" id="font_size" class="font_size">
+						<option value="auto">Auto</option>
+						<option value="font_11">11</option>
+						<option value="font_12">12</option>
+					</select>
+
+					<br>
+
+					<a href="#" class="ok">OK</a>
+				</div>
+			</div>
+		</div>
+
+
+		<script>
+
+			function $(obj) {
+				if (window === this) {
+					return new $(obj);
+				}
+
+				this.e = document.querySelector(obj);
+
+				return this;
+			}
+
+			$.prototype = {
+				addClass: function(cls) {
+					if (!this.hasClass(this.e,cls)) this.e.className += " " + cls;
+					return this;
+				},
+				hasClass: function(cls) {
+					return this.e.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
+				},
+				removeClass: function(cls) {
+					if (hasClass(ele,cls)) {
+						var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
+						this.e.className= this.e.className.replace(reg,' ');
+					}
+					return this;
+				},
+				on: function(event, callback) {
+					return this.e.addEventListener(event, callback, false);
+				}
+			}
+
+			$('#info').on('click', function() {
+				$('#postit').addClass('flipped');
+			});
+		</script>
+
+	</body>
+</html>

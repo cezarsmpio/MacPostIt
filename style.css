@@ -1,0 +1,163 @@
+/**
+ * RESET
+ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*********************************************/
+
+body { font-family: 'Helvetica', 'Arial', sans-serif; }
+br { clear: both; }
+
+.postit_container, .postit {
+	width: 210px;
+	height: 185px;
+	position: relative;
+}
+.postit_container {
+	margin: 200px auto;
+	-webkit-perspective: 600px;
+}
+.postit {
+	-webkit-transform-style: preserve-3d;
+	-webkit-transition: all 1s;
+}
+.postit.flipped {
+	-webkit-transform: rotateY(180deg);
+}
+.postit .front, .postit .back {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: 10px;
+	-webkit-box-sizing: border-box;
+	-webkit-backface-visibility: hidden;
+}
+.postit .front {
+	z-index: 10;
+}
+.postit .front > div {
+	overflow: hidden;
+	outline: 0;
+	width: 190px;
+	height: 165px;
+}
+.postit .front span {
+	position: fixed;
+	right: 5px;
+	bottom: 5px;
+	width: 15px;
+	height: 15px;
+	content: 'i';
+	font-family: 'Georgia';
+	font-style: italic;
+	display: block;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 15px;
+	font-size: 11px;
+	font-weight: 700;
+	cursor: default;
+	opacity: 0;
+	-webkit-transition: opacity .7s;
+}
+.postit .front:hover span {
+	opacity: 1;
+}
+.postit .front span:hover {
+	background: #beb15f;
+}
+.postit .back {
+	z-index: 5;
+	background: url(texture.jpg) no-repeat center center;
+	-webkit-transform: rotateY(180deg);
+}
+.postit .back > p {
+	color: #FFF;
+	font-size: 10px;
+	margin-bottom: 5px;
+}
+.postit .back .paper {
+	overflow: hidden;
+	margin-bottom: 7px;
+}
+.postit .back .paper a {
+	display: block;
+	width: 27px;
+	height: 24px;
+	float: left;
+	text-indent: -9999px;
+	-webkit-transform: rotateX(180deg);
+	box-shadow: 0 2px 5px #505054;
+	margin: 0 12px 8px 0;
+}
+.postit .back .paper a:nth-child(5n+0) {
+	margin-right: 0;
+}
+.postit .back .ok {
+	display: inline-block;
+	color: #FFF;
+	text-decoration: none;
+	float: right;
+	padding: 4px 9px;
+	background: -webkit-linear-gradient(top, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.6) 2%,rgba(255,255,255,0.5) 4%,rgba(255,255,255,0) 22%,rgba(255,255,255,0) 99%);
+	border-radius: 5px;
+	box-shadow: 0 2px 5px #1e1e20;
+	font-size: 12px;
+	margin-top: 20px;
+}
+.postit .back select {
+	box-shadow: 0 2px 5px #1e1e20;
+}
+
+/* Colors */
+.yellow {
+	background: -webkit-linear-gradient(top, #fff9ba 0%,#fff7b7 6%,#fff6b4 7%,#fff7b2 17%,#fff7a9 26%,#fff7a9 31%,#fff6a5 33%,#fff59c 53%,#fff491 66%,#fff392 69%,#fff389 75%,#fff28a 78%,#ffef78 100%);
+}
+/* Fonts */
+.helvetica {
+	font-family: 'Helvetica', sans-serif;
+}
