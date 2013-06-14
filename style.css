@@ -86,7 +86,7 @@ br { clear: both; }
 	height: 165px;
 }
 .postit .front span {
-	position: fixed;
+	position: absolute;
 	right: 5px;
 	bottom: 5px;
 	width: 15px;
@@ -108,7 +108,7 @@ br { clear: both; }
 	opacity: 1;
 }
 .postit .front span:hover {
-	background: #beb15f;
+	background: rgba(0, 0, 0, .2);
 }
 .postit .back {
 	z-index: 5;
@@ -155,6 +155,33 @@ br { clear: both; }
 /* Colors */
 .yellow {
 	background: -webkit-linear-gradient(top, #fff9ba 0%,#fff7b7 6%,#fff6b4 7%,#fff7b2 17%,#fff7a9 26%,#fff7a9 31%,#fff6a5 33%,#fff59c 53%,#fff491 66%,#fff392 69%,#fff389 75%,#fff28a 78%,#ffef78 100%);
+}
+.orange {
+	background: -webkit-linear-gradient(top, #febc8b 0%,#fdaa6b 100%);
+}
+.green_light {
+	background: -webkit-linear-gradient(top, #dcfe99 0%,#d2fe7e 100%);
+}
+.green {
+	background: -webkit-linear-gradient(top, #aefe89 0%,#98fe6b 100%);
+}
+.blue_green {
+	background: -webkit-linear-gradient(top, #a7f4fe 0%,#8ff0fe 100%);
+}
+.blue {
+	background: -webkit-linear-gradient(top, #85befc 0%,#64adfb 100%);
+}
+.purple {
+	background: -webkit-linear-gradient(top, #c2a7fb 0%,#b08efb 100%);
+}
+.pink {
+	background: -webkit-linear-gradient(top, #e3a7fc 0%,#db8efb 100%);
+}
+.white {
+	background: -webkit-linear-gradient(top, #f8f8f8 0%,#f5f5f5 100%);
+}
+.grey {
+	background: -webkit-linear-gradient(top, #d3d3d3 0%,#c7c7c7 100%);
 }
 /* Fonts */
 .helvetica {

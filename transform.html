@@ -9,23 +9,23 @@
 
 		<div class="postit_container">
 			<div class="postit" id="postit">
-				<div class="front yellow helvetica">
+				<div class="front yellow helvetica" id="front">
 					<div contenteditable="true" autofocus></div>
 					<span id="info">i</span>
 				</div>
 				<div class="back">
 					<p>Cor do Papel:</p>
-					<div class="paper">
-						<a href="#" class="yellow active">Amarelo</a>
-						<a href="#" class="blue">Azul</a>
-						<a href="#" class="red">Vermelho</a>
-						<a href="#" class="green">Verde</a>
-						<a href="#" class="purple">Roxo</a>
-						<a href="#" class="yellow">Amarelo</a>
-						<a href="#" class="blue">Azul</a>
-						<a href="#" class="red">Vermelho</a>
-						<a href="#" class="green">Verde</a>
-						<a href="#" class="purple">Roxo</a>
+					<div class="paper" id="paper">
+						<a href="#" data-color="yellow" class="yellow active">Amarelo</a>
+						<a href="#" data-color="orange" class="orange">Laranja</a>
+						<a href="#" data-color="green_light" class="green_light">Verde Claro</a>
+						<a href="#" data-color="green" class="green">Verde</a>
+						<a href="#" data-color="blue_green" class="blue_green">Verde Piscina</a>
+						<a href="#" data-color="blue" class="blue">Azul</a>
+						<a href="#" data-color="purple" class="purple">Roxo</a>
+						<a href="#" data-color="pink" class="pink">Pink</a>
+						<a href="#" data-color="white" class="white">Branco</a>
+						<a href="#" data-color="grey" class="grey">Cinza</a>
 					</div>
 
 					<p>Fonte:</p>
@@ -56,27 +56,61 @@
 					return new $(obj);
 				}
 
-				this.e = document.querySelector(obj);
+				this.e = [];
+
+				if ( typeof obj === 'object' ) {
+					this.e.push(obj);
+				}
+				else if ( document.querySelectorAll(obj).length >= 2 ) {
+					this.e = document.querySelectorAll(obj);
+				}
+				else {
+					this.e.push(document.querySelector(obj));
+				}
 
 				return this;
 			}
 
 			$.prototype = {
 				addClass: function(cls) {
-					if (!this.hasClass(this.e,cls)) this.e.className += " " + cls;
-					return this;
-				},
-				hasClass: function(cls) {
-					return new RegExp('(\\s|^)'+cls+'(\\s|$)').test(this.e.className);
-				},
-				removeClass: function(cls) {
-					if (this.hasClass(cls)) {
-						this.e.className=this.e.className.replace(new RegExp('(\\s|^)'+cls+'(\\s|$)'),' ').replace(/^\s+|\s+$/g, '');
+					for ( var i = 0, t = this.e.length; i < t; i++ ) {
+						this.e[i].classList.add(cls);
 					}
 					return this;
 				},
+				hasClass: function(cls) {
+					return this.e[0].classList.contains(cls);
+				},
+				removeClass: function(cls) {
+					for ( var i = 0, t = this.e.length; i < t; i++ ) {
+						this.e[i].classList.remove(cls);
+					}
+
+					return this;
+				},
+				toggleClass: function(cls) {
+					for ( var i = 0, t = this.e.length; i < t; i++ ) {
+						this.e[i].classList.toggle(cls);
+					}
+
+					return this;
+				},
 				on: function(event, callback) {
-					return this.e.addEventListener(event, callback, false);
+					for ( var i = 0, t = this.e.length; i < t; i++ ) {
+						this.e[i].addEventListener(event, callback, false);
+					}
+				},
+				localSetItem: function(name, val) {
+					window.localStorage.setItem(name, val);
+					return this;
+				},
+				localGetItem: function(name) {
+					return window.localStorage.getItem(name);
+				},
+				attr: function(name) {
+					for ( var i = 0, t = this.e.length; i < t; i++ ) {
+						return this.e[i].getAttribute(name);
+					}
 				}
 			}
 
@@ -86,6 +120,19 @@
 
 			$('#ok').on('click', function(e) {
 				$('#postit').removeClass('flipped');
+
+				e.preventDefault();
+			});
+
+			$('#paper a').on('click', function(e) {
+				var self = $(this),
+					attr = self.attr('data-color'),
+					active = $('#paper .active'),
+					oldattr = active.attr('data-color');
+
+				active.removeClass('active');
+				self.addClass('active');
+				$('#front').removeClass(oldattr).addClass(attr);
 
 				e.preventDefault();
 			});
