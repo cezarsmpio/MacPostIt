@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-br" ng-app="PostItApp">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS3 - Postit</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+	<body ng-controller="PostItController">
+
+		<!-- Adicionar novo post it -->
+		<a href="#" class="add-postit" ng-click="newPostIt(); $event.preventDefault();">+</a>
+
+		<!-- Post It -->
+		<div class="postit" ng-repeat="p in posts" ng-class="{'flipped': p.isFlipped}" style="left: {{ p.left }}px; top: {{ p.top }}px;" draggable>
+
+			<!-- Parte da frente do post it -->
+			<div class="postit-front {{ p.color }}">
+				<!-- Conteúdo do post it -->
+				<div
+					class="postit-content"
+					contenteditable="true"
+					autofocus
+					ng-model="p.text"
+					style="font-family: '{{ p.font.family }}'; font-size: {{ p.font.size }}px; line-height: {{ (p.font.size * 1.4) | number:0 }}px">
+						{{ p.text }}
+				</div>
+				<span class="postit-info" ng-click="p.isFlipped = true;">i</span>
+			</div>
+			<!-- /end parte da frente -->
+
+			<!-- Parte de trás do post it -->
+			<div class="postit-back">
+				<!-- Escolher cores do post it -->
+				<p class="postit-label">Cor do Papel:</p>
+				<div class="papers">
+					<a href="#" ng-repeat="c in colors" class="paper-color {{ c }}" ng-click="p.color = c; $event.preventDefault();" ng-class="{'paper-color-is-active': p.color == c}">{{ c }}</a>
+				</div>
+
+				<!-- Escolher font family -->
+				<p class="postit-label">Fonte:</p>
+				<select class="postit-select fonts" ng-model="p.font.family" ng-options="f for f in fonts"></select>
+
+				<!-- Escolher font size -->
+				<select class="postit-select font-size" ng-model="p.font.size" ng-options="s for s in sizes">
+				</select>
+
+				<br>
+
+				<!-- Finalizar configurações -->
+				<a href="#" class="ok" ng-click="p.isFlipped = false; $event.preventDefault();">OK</a>
+			</div>
+			<!-- /end parte de tras -->
+		</div>
+		<!-- /end post it -->
+
+		<a href="#" class="credits">Made with AngularJS by Cezar Luiz</a>
+
+		<script src="js/angular.min.js"></script>
+		<script src="js/app.js"></script>
+	</body>
+</html>
