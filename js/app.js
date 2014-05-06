@@ -3,7 +3,7 @@ var app = angular.module('PostItApp', []);
 /**
  * Controllers
  */
-app.controller('PostItController', function ($scope) {
+app.controller('PostItController', function ($scope, $window, $localStorage) {
 	/**
 	 * Models
 	 */
@@ -54,6 +54,19 @@ app.controller('PostItController', function ($scope) {
 			}
 		});
 	};
+
+	// Salva o post-it em localStorage
+	$scope.savePostIt = function () {
+		localStorage.setItem('postits', JSON.stringify($scope.posts));
+	}
+
+	$scope.getPostIts = function () {
+		return JSON.parse(localStorage.getItem('postits'));
+	}
+
+	$scope.$watch('posts', function (newValue, oldValue) {
+		$scope.savePostIt();
+	}, true);
 });
 
 /**
@@ -84,10 +97,13 @@ app.directive('draggable', ['$document', function ($document) {
 				var dx = $event.clientX - initialMouseX,
 					dy = $event.clientY - initialMouseY;
 
-				el.css({
-					top: startY + dy + 'px',
-					left: startX + dx + 'px'
-				}).addClass('postit-grabbing');
+				el.addClass('postit-grabbing');
+
+				// Altera os valores do element no scopo
+				scope.$apply(function() {
+					scope.p.left = startX + dx;
+					scope.p.top = startY + dy;
+				});
 
 				return false;
 			}
