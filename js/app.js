@@ -3,7 +3,7 @@ var app = angular.module('PostItApp', []);
 /**
  * Controllers
  */
-app.controller('PostItController', function ($scope, $window, $localStorage) {
+app.controller('PostItController', function ($scope, $window) {
 	/**
 	 * Models
 	 */
