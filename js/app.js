@@ -60,11 +60,15 @@ app.controller('PostItController', function ($scope, $window) {
 		localStorage.setItem('postits', JSON.stringify($scope.posts));
 	}
 
+	// Retorna os postits salvos em localstorage
+	// se não for encontrado retorna uma array []
 	$scope.getPostIts = function () {
-		return JSON.parse(localStorage.getItem('postits'));
+		return JSON.parse(localStorage.getItem('postits')) || [];
 	}
 
-	$scope.$watch('posts', function (newValue, oldValue) {
+	// O método $watch fica 'escutando' o escopo posts
+	// Qualquer alteração ele salvará em localstorage
+	$scope.$watch('posts', function () {
 		$scope.savePostIt();
 	}, true);
 });
@@ -99,7 +103,9 @@ app.directive('draggable', ['$document', function ($document) {
 
 				el.addClass('postit-grabbing');
 
-				// Altera os valores do element no scopo
+				// Altera os valores do element no escopo
+				// Como angular é TwoWay Data Binding
+				// Isso se refletirá no html
 				scope.$apply(function() {
 					scope.p.left = startX + dx;
 					scope.p.top = startY + dy;
