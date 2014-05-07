@@ -66,6 +66,11 @@ app.controller('PostItController', function ($scope, $window) {
 		return JSON.parse(localStorage.getItem('postits')) || [];
 	}
 
+	// Apaga todos os postits do escopo
+	$scope.clearPostIts = function () {
+		$scope.posts = [];
+	}
+
 	// O método $watch fica 'escutando' o escopo posts
 	// Qualquer alteração ele salvará em localstorage
 	$scope.$watch('posts', function () {

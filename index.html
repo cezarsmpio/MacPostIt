@@ -8,7 +8,10 @@
 	<body ng-controller="PostItController" ng-init="posts = getPostIts();">
 
 		<!-- Adicionar novo post it -->
-		<a href="#" class="add-postit" ng-click="newPostIt(); $event.preventDefault();">+</a>
+		<a href="#" class="btn-postit" ng-click="newPostIt(); $event.preventDefault();">+</a>
+
+		<!-- Limpar postits -->
+		<a href="#" class="btn-postit clear-postit" ng-click="clearPostIts(); $event.preventDefault();">Limpar</a>
 
 		<!-- Post It -->
 		<div class="postit" ng-repeat="p in posts" ng-class="{'flipped': p.isFlipped}" style="left: {{ p.left }}px; top: {{ p.top }}px;" draggable>

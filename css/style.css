@@ -304,9 +304,9 @@ br { clear: both; }
 }
 
 /**
- * Add Post it
+ * Btn Post it
  */
-.add-postit {
+.btn-postit {
 	position: absolute;
 	display: inline-block;
 	bottom: 20px;
@@ -321,12 +321,17 @@ br { clear: both; }
 	transition: all .3s;
 }
 
-.add-postit:hover {
+.btn-postit:hover {
 	-webkit-transform: scale(1.1);
 	-moz-transform: scale(1.1);
 	-ms-transform: scale(1.1);
 	-o-transform: scale(1.1);
 	transform: scale(1.1);
+}
+
+.clear-postit {
+	border-radius: 10px;
+	left: 80px;
 }
 
 /**
