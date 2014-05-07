@@ -11,4 +11,4 @@ Foram utilizados:
 * CSS3
 * HTML5
 
-####[Demonstração](www.uxdev.com.br/post-it-com-angularjs/)
+####[Demonstração](http://www.uxdev.com.br/post-it-com-angularjs/)
