@@ -61,11 +61,6 @@ html, body {
 body {
 	font-family: 'Helvetica', 'Arial', sans-serif;
 	background: #efefef;
-
-	-webkit-perspective: 1700px;
-	-moz-perspective: 1700px;
-	-ms-perspective: 1700px;
-	perspective: 1700px;
 }
 br { clear: both; }
 
@@ -80,15 +75,11 @@ br { clear: both; }
 	cursor: -webkit-grab;
 	cursor: grab;
 	z-index: 10;
-	box-shadow: rgba(0, 0, 0, .1) 0 5px 10px;
 
-	-webkit-transform-style: preserve-3d;
-	-moz-transform-style: preserve-3d;
-	-ms-transform-style: preserve-3d;
-	transform-style: preserve-3d;
-
-	transition: -webkit-transform 1s;
-	transition: transform 1s;
+	-webkit-perspective: 1000px;
+	-moz-perspective: 1000px;
+	-ms-perspective: 1000px;
+	perspective: 1000px;
 }
 
 .postit-visible {
@@ -100,13 +91,6 @@ br { clear: both; }
 	cursor: grabbing;
 }
 
-.postit.flipped {
-	-webkit-transform: rotateY(-180deg);
-	-moz-transform: rotateY(-180deg);
-	-ms-transform: rotateY(-180deg);
-	-o-transform: rotateY(-180deg);
-	transform: rotateY(-180deg);
-}
 .postit-front, .postit-back {
 	position: absolute;
 	top: 0;
@@ -114,19 +98,48 @@ br { clear: both; }
 	width: 100%;
 	height: 100%;
 	padding: 10px;
+	box-shadow: rgba(0, 0, 0, .1) 0 5px 10px;
 
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
 	-ms-backface-visibility: hidden;
 	backface-visibility: hidden;
+
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	-ms-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+
+	transition: -webkit-transform 1s;
+	transition: transform 1s;
 }
+
+.flipped .postit-front {
+	-webkit-transform: rotateY(180deg);
+	-moz-transform: rotateY(180deg);
+	-ms-transform: rotateY(180deg);
+	-o-transform: rotateY(180deg);
+	transform: rotateY(180deg);
+	z-index: 5;
+}
+
+.flipped .postit-back {
+	-webkit-transform: rotateY(0deg);
+	-moz-transform: rotateY(0deg);
+	-ms-transform: rotateY(0deg);
+	-o-transform: rotateY(0deg);
+	transform: rotateY(0deg);
+	z-index: 10;
+}
+
 
 /**
  * PostIt Front
  */
 .postit-front {
-	z-index: 11;
+	z-index: 5;
 }
+
 .postit-content {
 	overflow: hidden;
 	outline: 0;
@@ -167,14 +180,14 @@ br { clear: both; }
  * PostIt Back
  */
 .postit-back {
-	z-index: 11;
 	background: linear-gradient(to bottom, #5d5d60, #515153);
+	z-index: 0;
 
-	-webkit-transform: rotateY(180deg);
-	-moz-transform: rotateY(180deg);
-	-ms-transform: rotateY(180deg);
-	-o-transform: rotateY(180deg);
-	transform: rotateY(180deg);
+	-webkit-transform: rotateY(-180deg);
+	-moz-transform: rotateY(-180deg);
+	-ms-transform: rotateY(-180deg);
+	-o-transform: rotateY(-180deg);
+	transform: rotateY(-180deg);
 }
 .postit-label {
 	color: #FFF;
